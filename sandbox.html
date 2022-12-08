@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Sandbox for exercises</title>        
+    </head>
+    <body>        
+        <script>  
+            const param = 'fruit';
+            console.log(MakeItUpper(param));
+
+            const temps = [-1, 0, 2, 5, -24, 13, -4];
+            console.log('temps = ' + temps);        
+            console.log('temps above freezing = ' + aboveFreezing(temps));
+            
+            const foods = [{
+                name: 'Apple',
+                color: 'red'
+            },{
+                name: 'Egg',
+                color: 'white'
+            }
+            ];
+            
+            console.log('Before filter:');
+            foods.forEach(element => {
+                console.log(element.name + ' ' + element.color);  
+            });
+            console.log('After filter:');
+            removeRed(foods).forEach(element => {
+                console.log(element.name + ' ' + element.color);  
+            });
+            
+            function aboveFreezing(numArr){
+                return numArr.filter(function(num){
+                    return num > 0;
+                });            
+            }
+
+            function MakeItUpper(str){
+                return str.toUpperCase();
+            }
+
+            function removeRed(foodArray){
+                const filteredArray = 
+                foodArray.filter(function(food){
+                    return food.color !== 'red';
+                });
+                return filteredArray;
+            }
+        </script>
+    </body>
+</html>
