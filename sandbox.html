@@ -7,7 +7,7 @@
             const param = 'fruit';
             console.log(MakeItUpper(param));
 
-            const temps = [-1, 0, 2, 5, -24, 13, -4];
+            const temps = [-1, 0, 2, 5, -24, 13, -4];            
             console.log('temps = ' + temps);        
             console.log('temps above freezing = ' + aboveFreezing(temps));
             
@@ -29,6 +29,17 @@
                 console.log(element.name + ' ' + element.color);  
             });
             
+            const numbers = [1, 5, -2, 4, 3, 5, 0];
+            console.log("The largest number in the array is " + max(numbers));
+            console.log("The smallest number in the array is " + min(numbers));
+            console.log("The smallest number that is greater or equal to zero in the array is " + minMoreThanZero(numbers));
+
+            const fruitLists = ['cherry', 'apple', 'orange', 'apple', 'banana', 'apple'];
+            console.log("All fruits: " + fruitLists);
+            console.log("Pick 2 apples: " + pick2Apples(fruitLists));
+            console.log("Pick 2 apples and 1 orange: " + pick2apples1Orange(fruitLists));
+            console.log("Pick 2 apples from behind: " + pickLast2Apples(fruitLists));
+
             function aboveFreezing(numArr){
                 return numArr.filter(function(num){
                     return num > 0;
@@ -45,6 +56,94 @@
                     return food.color !== 'red';
                 });
                 return filteredArray;
+            }
+
+            function max(numArr){
+                let max = -Infinity;
+
+                numArr.forEach(element => {
+                    if(element > max)    
+                        max = element;
+                });
+                return max;
+            }
+
+            function min(numArr){
+                min = Infinity;
+
+                numArr.forEach(element => {
+                    if(element < min)
+                        min = element;
+                });
+                return min;
+            }
+
+            function minMoreThanZero(numArr){
+                let min = Infinity;
+                numArr.forEach(ele =>{
+                    if(ele >= 0){
+                        if(ele < min)
+                            min = ele;
+                    }
+                });
+                return min;
+            }   
+
+            function pick2Apples(stringArr){
+                let bufferArray = null;
+                let timeFiltered = 0;
+                bufferArray = stringArr.filter(stringItem => {
+                    if(timeFiltered < 2){
+                        if (stringItem === 'apple') {
+                        timeFiltered++;
+                        return false;
+                        }
+                    }                    
+                    return true;
+                });
+                return bufferArray;
+            }
+
+            function pick2apples1Orange(fruitArray){
+                let bufferArray = null;
+                let applesPicked = 0; //2
+                let orangedPicked = 0;//1
+                
+                bufferArray = fruitArray.filter(fruit => {
+                    if(fruit === 'apple'){
+                        if(applesPicked < 2){                        
+                            applesPicked++;
+                            return false;
+                        }
+                        return true;
+                    }else if(fruit === 'orange'){
+                        if(orangedPicked < 1){
+                            orangedPicked++;
+                            return false;
+                        }
+                        return true;
+                    }else             
+                        return true;
+                });
+                return bufferArray;
+            }
+
+            function pickLast2Apples(fruitArr){
+                fruitArr.reverse();
+                
+                let applesPicked = 0;
+                
+                const buffer = fruitArr.filter(fruit => {
+                    if(applesPicked < 2){
+                        if(fruit === 'apple'){
+                            applesPicked++;
+                            return false;
+                        }
+                    }
+                    return true;
+                });
+                buffer.reverse();
+                return buffer;
             }
         </script>
     </body>
